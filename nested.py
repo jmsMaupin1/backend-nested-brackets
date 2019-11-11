@@ -26,8 +26,6 @@ def process_lines(filename):
 
 
 def validate(line):
-    open_brackets = ['(', '[', '{', '<', '(*']
-    close_brackets = [')', ']', '}', '>', '*)']
     brackets = {
        "(": ")",
        "(*": "*)",
@@ -46,9 +44,9 @@ def validate(line):
 
         count += 1
 
-        if token in open_brackets:
+        if token in brackets:
             stack.append(token)
-        elif token in close_brackets:
+        elif token in brackets.values():
             if brackets[stack.pop()] != token:
                 return 'NO %d' % count
 
